@@ -1,6 +1,6 @@
  配置vim
  安装vbundle插件：
- git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/vundle
  配置.vimrc:
  set nocompatible              " be iMproved, required
  filetype off                  " required
@@ -43,5 +43,11 @@
 	cd ~/.vim/bundle/YouCompleteMe
 	cp /root/.vim/bundle/YouCompleteMe/third_party/ycmd/examples/.ycm_extra_conf.py /root/:
 	./install.sh      --all
-	详情请看:https://github.com/Valloric/YouCompleteMe
-	"
+	详情请看:https://github.com/Valloric/YouCompleteM
+将.vimrc 文件拷贝到root文件下
+#git 上传代码用例
+#git init
+#git add README.md    “添加README.md到github上也可使用 git add * 表示将强文件夹下所有的文件都上传上去
+#git commit -m "first commit"  “更新本地git库
+#git remote add origin https://github.com/tianxiang133/teset.git “添加到远程git库
+#git push -u origin master 上传到github上
