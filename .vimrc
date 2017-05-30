@@ -4,193 +4,56 @@ set syntax=on
 set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
 Bundle 'gmarik/vundle'
-Bundle 'Solarized' 
+Bundle 'Solarized'
 Bundle 'NERD_tree-Project'
-Bundle 'kien/ctrlp.vim.git' 
- "Bundle 'taglist.vim'
-Bundle 'TaskList.vim'
- "Bundle 'Valloric/YouCompleteMe.git'
- "Bundle 'taglist.vim.git'
-Bundle 'vim-syntastic/syntastic.git'
-Bundle 'python-mode/python-mode.git'
-Bundle 'project.vim'
-Bundle 'ctags.vim'
-Bundle 'cscope.vim'
+"Bundle 'kien/ctrlp.vim.git'
+"Bundle 'taglist.vim'
+"Bundle 'TaskList.vim'
+Bundle 'Valloric/YouCompleteMe'
+"Bundle 'taglist.vim.git'
+"Bundle 'vim-syntastic/syntastic.git'
+"Bundle 'python-mode/python-mode.git'
+"Bundle 'project.vim'
+"Bundle 'ctags.vim'
+"Bundle 'cscope.vim'
 Bundle 'The-NERD-tree'
 Bundle 'The-NERD-Commenter'
-Bundle 'Syntastic'
-Plugin 'Tagbar'
+"Bundle 'Syntastic'
+"Plugin 'Tagbar'  
 "Plugin 'Valloric/YouCompleteMe.git'
-Plugin 'Valloric/YouCompleteMe'
-Bundle 'Raimondi/delimitMate'
+"Bundle 'Raimondi/delimitMate'
+"Bundle ‘’
+Bundle 'altercation/solarized.git'
+Bundle 'altercation/vim-colors-solarized'
 call vundle#end()
+set nocp
+syntax on
+set t_Co=256
+set background=dark
+colorscheme solarized
 
-"filetype on
-filetype indent on
+ 
 
-set noeb 
-set confirm
-set autoindent 
-set cindent
-set tabstop=4 
-set softtabstop=4  
-set shiftwidth=4 
-set noexpandtab
-set smarttab
-"set number
-set history=1000
-set nobackup  
-set noswapfile 
-set ignorecase 
-set hlsearch  
-set incsearch 
-set gdefault
-set enc=utf-8  
-set fencs=utf-8,ucs-bom,shift-jis,gb18030,gbk,gb2312,cp936 
-set langmenu=zh_CN.UTF-8  
-set helplang=cn  
-set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}  
-"set statusline=[%F]%y%r%m%*%=[Line:%l/%L,Column:%c][%p%%] 
-set laststatus=2  
-set ruler
-set cmdheight=2
-set iskeyword+=_,$,@,%,#,- 
-set linespace=0
-set wildmenu
-set backspace=2
-set whichwrap+=<,>,h,l
-set mouse=a  
-set selection=exclusive  
-set selectmode=mouse,key  
-set report=0
-set shortmess=atI 
-set fillchars=vert:\ ,stl:\ ,stlnc:\
-set showmatch 
-set matchtime=5
-set scrolloff=3 
-set smartindent
-"syntax on
-"set t_Co=256  
-"set background=dark
-"colorscheme solarized 
+map <C-n> :NERDTreeToggle<CR>
+let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
 
-if has("autocmd")  
-   autocmd FileType xml,html,c,cs,java,perl,shell,bash,cpp,python,vim,php,ruby set number  
-   autocmd FileType xml,html vmap <C-o> <ESC>'<i<!--<ESC>o<ESC>'>o-->  
-   autocmd FileType java,c,cpp,cs vmap <C-o> <ESC>'<o/*<ESC>'>o*/  
-   autocmd FileType html,text,php,vim,c,java,xml,bash,shell,perl,python setlocal textwidth=100  
-   autocmd Filetype html,xml,xsl source $VIMRUNTIME/plugin/closetag.vim  
-   autocmd BufReadPost *  
-      \ if line("'\"") > 0 && line("'\"") <= line("$") |  
-      \   exe "normal g`\"" |  
-      \ endif  
-endif " has("autocmd") 
+" YouCompleteMe
+set runtimepath+=~/.vim/bundle/YouCompleteMe
+let g:ycm_collect_identifiers_from_tags_files = 1           " 开启 YCM 基于标签引擎
+let g:ycm_collect_identifiers_from_comments_and_strings = 1 " 注释与字符串中的内容也用于补全
+let g:syntastic_ignore_files=[".*\.py$"]
+let g:ycm_seed_identifiers_with_syntax = 1                  " 语法关键字补全
+let g:ycm_complete_in_comments = 1
+let g:ycm_confirm_extra_conf = 0
+let g:ycm_key_list_select_completion = ['<c-n>', '<Down>']  " 映射按键, 没有这个会拦截掉tab, 导致其他插件的tab不能用.
+let g:ycm_key_list_previous_completion = ['<c-p>', '<Up>']
+let g:ycm_complete_in_comments = 1                          " 在注释输入中也能补全
+let g:ycm_complete_in_strings = 1                           " 在字符串输入中也能补全
+let g:ycm_collect_identifiers_from_comments_and_strings = 1 " 注释和字符串中的文字也会被收入补全
+let g:ycm_global_ycm_extra_conf='~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+let g:ycm_show_diagnostics_ui = 0                           " 禁用语法检查
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>" |            " 回车即选中当前项
+nnoremap <c-j> :YcmCompleter GoToDefinitionElseDeclaration<CR>|     " 跳转到定义处
+"let g:ycm_min_num_of_chars_for_completion=2                 " 从第2个键入字符就开始罗列匹配项
 
 
-"c programe make
-"map <F5> :call CompileRunGcc()<CR>  
-"func! CompileRunGcc()  
-"exec "w"  
-"exec "!gcc % -o %<"  
-"exec "! ./%<"  
-"endfunc  
-
-
-"c++ programe make
-"map <F6> :call CompileRunGpp()<CR>  
-"func! CompileRunGpp()  
-"exec "w"  
-"exec "!g++ % -o %<"  
-"exec "! ./%<"  
-"endfunc
-
-set encoding=utf-8  
-function! SetFileEncodings(encodings)  
-    let b:myfileencodingsbak=&fileencodings  
-    let &fileencodings=a:encodings  
-endfunction  
-function! RestoreFileEncodings()  
-    let &fileencodings=b:myfileencodingsbak  
-    unlet b:myfileencodingsbak  
-endfunction  
-  
-au BufReadPre *.nfo call SetFileEncodings('cp437')|set ambiwidth=single  
-au BufReadPost *.nfo call RestoreFileEncodings()  
-
-au BufRead,BufNewFile *  setfiletype txt  
-
-set foldenable  
-set foldmethod=manual  
-nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR> 
-
-let g:miniBufExplMapWindowNavVim = 1  
-let g:miniBufExplMapWindowNavArrows = 1  
-let g:miniBufExplMapCTabSwitchBufs = 1  
-let g:miniBufExplModSelTarget = 1 
-
-"ctags configuration
-if has("win32")
-	let Tlist_Ctags_Cmd = 'ctags'
-else
-	let Tlist_Ctags_Cmd = '/usr/bin/ctags'
-endif
-let Tlist_Show_One_File = 1
-let Tlist_Exit_OnlyWindow = 1
-let Tlist_Use_Left_Window = 1 
-
-"configuration csope
-if has("cscope")
-	set cscopetag
-	set csto=0
-	if filereadable("cscope.out")
-		cs add cscope.out
-	elseif $CSCOPE_DB != ""
-		cs add $CSCOPE_DB
-	endif
-	set cscopeverbose
-	nmap <C-\>s :cs find s <C-R>=expand("")<CR><CR>
-	nmap <C-\>g :cs find g <C-R>=expand("")<CR><CR>
-	nmap <C-\>c :cs find c <C-R>=expand("")<CR><CR>
-	nmap <C-\>t :cs find t <C-R>=expand("")<CR><CR>
-	nmap <C-\>e :cs find e <C-R>=expand("")<CR><CR>
-	nmap <C-\>f :cs find f <C-R>=expand("")<CR><CR>
-	nmap <C-\>i :cs find i ^<C-R>=expand("")<CR>$<CR>
-	nmap <C-\>d :cs find d <C-R>=expand("")<CR><CR>
-	nmap <C-@>s :scs find s <C-R>=expand("")<CR><CR>
-	nmap <C-@>g :scs find g <C-R>=expand("")<CR><CR>
-	nmap <C-@>c :scs find c <C-R>=expand("")<CR><CR>
-	nmap <C-@>t :scs find t <C-R>=expand("")<CR><CR>
-	nmap <C-@>e :scs find e <C-R>=expand("")<CR><CR>
-	nmap <C-@>f :scs find f <C-R>=expand("")<CR><CR>
-	nmap <C-@>i :scs find i ^<C-R>=expand("")<CR>$<CR>
-	nmap <C-@>d :scs find d <C-R>=expand("")<CR><CR>
-	nmap <C-@><C-@>s :vert scs find s <C-R>=expand("")<CR><CR>
-	nmap <C-@><C-@>g :vert scs find g <C-R>=expand("")<CR><CR>
-	nmap <C-@><C-@>c :vert scs find c <C-R>=expand("")<CR><CR>
-	nmap <C-@><C-@>t :vert scs find t <C-R>=expand("")<CR><CR>
-	nmap <C-@><C-@>e :vert scs find e <C-R>=expand("")<CR><CR>
-	nmap <C-@><C-@>f :vert scs find f <C-R>=expand("")<CR><CR>
-	nmap <C-@><C-@>i :vert scs find i ^<C-R>=expand("")<CR>$<CR>
-	nmap <C-@><C-@>d :vert scs find d <C-R>=expand("")<CR><CR>
-endif
-
-"project configuration
-nmap <silent> <Leader>P <Plug>ToggleProject
-let g:proj_window_width=20
-let g:proj_window_increment=90
-let g:proj_flags='i'
-let g:proj_flags='m'
-let g:proj_flags='s'
-let g:proj_flags='t'
-let g:proj_flags='c'
-let g:proj_flags='F'
-let g:proj_flags='L'
-let g:proj_flags='n'
-let g:proj_flags='S'
-let g:proj_flags='T'
-let g:proj_flags='v'
-let g:proj_run1='!p4 edit %f'
-let g:proj_run3='silent !gvim %f'
-
-nmap <F5> :NERDTreeToggle<cr>
-let g:ycm_global_ycm_extra_conf='~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
