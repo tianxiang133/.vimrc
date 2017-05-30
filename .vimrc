@@ -25,6 +25,7 @@ Bundle 'The-NERD-Commenter'
 "Bundle ‘’
 Bundle 'altercation/solarized.git'
 Bundle 'altercation/vim-colors-solarized'
+Plugin 'Syntastic'
 call vundle#end()
 set nocp
 syntax on
@@ -92,3 +93,4 @@ set shiftwidth=4
 set noexpandtab
 set nu
 set autoindent
+set backspace=indent,eol,start
